@@ -19,7 +19,7 @@
        android:layout_height="60dp"
        android:text="+"
        android:textSize="25sp"
-       android:elevation="4dp"
+       android:elevation="8dp"
        android:textColor="@color/White"
        android:background="@drawable/circle_green"
        android:layout_gravity="bottom"

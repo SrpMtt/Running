@@ -240,7 +240,7 @@
           android:layout_alignParentLeft="true"
           android:layout_alignParentBottom="true"
           android:layout_marginLeft="30dp"
-          android:elevation="4dp"/>
+          android:elevation="8dp"/>
 
       <Button
           android:id="@+id/stopButton"
@@ -252,7 +252,7 @@
           android:layout_alignParentBottom="true"
           android:layout_alignParentRight="true"
           android:layout_marginRight="30dp"
-       android:elevation="4dp"/>
+       android:elevation="8dp"/>
    </RelativeLayout>
 
 </RelativeLayout>

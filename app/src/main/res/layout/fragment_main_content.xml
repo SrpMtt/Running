@@ -30,7 +30,7 @@
       android:layout_centerHorizontal="true"
       android:layout_alignParentBottom="true"
       android:layout_margin="30dp"
-      android:elevation="4dp"
+      android:elevation="8dp"
       />
 
    <Button
@@ -45,7 +45,7 @@
         android:layout_above="@id/sessionListButton"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:elevation="4dp"
+        android:elevation="8dp"
         />
 
 
