@@ -1,0 +1,42 @@
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    >
+
+    <PreferenceCategory
+        android:title="@string/category_parameters"
+        android:key="pref_session_parameters"
+        >
+
+        <EditTextPreference
+            android:key="pref_default_speed"
+            android:title="@string/default_speed"
+            android:summary="@string/default_speed_summary"
+            android:dialogTitle="@string/default_speed_title"
+            android:inputType="number"
+            android:defaultValue="3"
+            />
+
+        <EditTextPreference
+            android:key="pref_default_last_meters"
+            android:title="@string/default_last_meters"
+            android:summary="@string/default_last_meters_summary"
+            android:dialogTitle="@string/default_last_meters_title"
+            android:defaultValue="50"
+            android:inputType="number"
+            />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/category_storage"
+        android:key="pref_storage">
+
+        <Preference
+            android:key="pref_delete_database"
+            android:title="Erase session data"
+            />
+
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/White"
+   >
+
+    <ListView
+        android:id="@+id/session_list_view"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:choiceMode="singleChoice"
+        android:textColor="@color/DimGray"
+        android:divider="@color/White"
+        android:dividerHeight="20dp"
+        />
+
+    <Button
+        android:id="@+id/newSessionButton2"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:text="+"
+        android:textSize="25sp"
+        android:elevation="4dp"
+        android:textColor="@color/White"
+        android:background="@drawable/circle_green"
+        android:layout_gravity="bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="24dp"
+        android:layout_marginBottom="16dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+   xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/White" >
+
+   <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/appLogo"
+              android:layout_width="120dp"
+              android:layout_height="120dp"
+              android:layout_centerHorizontal="true"
+              android:layout_marginTop="60dp"
+              android:scaleType="fitXY"
+              android:src="@drawable/ic_launcher"/>
+
+   <RelativeLayout android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_below="@id/appLogo"
+                   android:layout_marginTop="20dp"
+                   android:layout_centerHorizontal="true">
+      <TextView
+         android:id="@+id/developedBy"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/developed_by"
+         android:textSize="15sp"
+         android:layout_alignParentTop="true"
+         android:layout_centerHorizontal="true"/>
+
+      <TextView
+         android:id="@+id/author1"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="15dp"
+         android:text="@string/author1"
+         android:layout_below="@id/developedBy"
+         android:textSize="20sp"
+         android:layout_centerHorizontal="true"/>
+
+      <TextView
+         android:id="@+id/author2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="@string/author2"
+         android:textSize="20sp"
+         android:layout_below="@id/author1"
+         android:layout_centerHorizontal="true"/>
+
+      <TextView
+         android:id="@+id/author3"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginBottom="20dp"
+         android:text="@string/author3"
+         android:textSize="20sp"
+         android:layout_below="@id/author2"
+         android:layout_centerHorizontal="true"/>
+   </RelativeLayout>
+
+   <TextView
+      android:id="@+id/iconCredits"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="20dp"
+      android:text="@string/iconAttribution"
+      android:textSize="10sp"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"/>
+
+   <TextView
+      android:id="@+id/applicense"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:text="@string/license"
+      android:layout_above="@+id/iconCredits"
+      android:textSize="10sp"
+      android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/White" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:id="@+id/container_graph"
+        android:layout_alignParentTop="true"
+        android:layout_margin="5dp">
+
+       <android.support.v4.view.ViewPager
+           xmlns:android="http://schemas.android.com/apk/res/android"
+           android:id="@+id/graph_pager"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent" >
+
+       </android.support.v4.view.ViewPager>
+
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/session_detail_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_margin="5dp"
+        android:gravity="center"
+        android:layout_below="@+id/viewPageIndicator"/>
+
+   <RelativeLayout
+      android:id="@+id/viewPageIndicator"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/container_graph"
+      android:layout_centerHorizontal="true"
+       android:layout_marginBottom="5dp">
+
+      <Button
+          android:id="@+id/pos0"
+          android:layout_width="8dp"
+          android:layout_height="8dp"
+          android:background="@drawable/circle_gray_empty"
+          android:layout_margin="3dp"/>
+      <Button
+          android:id="@+id/pos1"
+          android:layout_width="8dp"
+          android:layout_height="8dp"
+          android:background="@drawable/circle_gray_empty"
+          android:layout_toRightOf="@+id/pos0"
+          android:layout_margin="3dp"/>
+      <Button
+          android:id="@+id/pos2"
+          android:layout_width="8dp"
+          android:layout_height="8dp"
+          android:background="@drawable/circle_gray_empty"
+          android:layout_toRightOf="@+id/pos1"
+          android:layout_margin="3dp"/>
+      <Button
+          android:id="@+id/pos3"
+          android:layout_width="8dp"
+          android:layout_height="8dp"
+          android:background="@drawable/circle_gray_empty"
+          android:layout_toRightOf="@+id/pos2"
+          android:layout_margin="3dp"/>
+      <Button
+          android:id="@+id/pos4"
+          android:layout_width="8dp"
+          android:layout_height="8dp"
+          android:background="@drawable/circle_gray_empty"
+          android:layout_toRightOf="@+id/pos3"
+          android:layout_margin="3dp"/>
+      <Button
+          android:id="@+id/pos5"
+          android:layout_width="8dp"
+          android:layout_height="8dp"
+          android:background="@drawable/circle_gray_empty"
+          android:layout_toRightOf="@+id/pos4"
+          android:layout_margin="3dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_distance_speed"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/session_detail_date">
+
+        <TextView
+            android:id="@+id/session_detail_distance_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/session_detail_distance"
+            android:text="@string/sessionDistanceView"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/session_detail_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/session_detail_average_speed_title"
+            android:layout_margin="1dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/session_detail_average_speed_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/session_detail_average_speed"
+            android:text="@string/averageSpeedView"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/session_detail_average_speed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="1dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="20sp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/container_duration_pace"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="5dp"
+        android:layout_below="@+id/session_detail_date">
+
+        <TextView
+            android:id="@+id/session_detail_duration_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/session_detail_duration"
+            android:text="@string/durationView"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/session_detail_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/session_detail_average_pace_title"
+            android:textSize="20sp"
+            android:layout_margin="1dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/session_detail_average_pace_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/session_detail_average_pace"
+            android:text="@string/averagePaceView"
+            android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/session_detail_average_pace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_margin="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
