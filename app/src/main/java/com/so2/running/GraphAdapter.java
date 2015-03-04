@@ -43,6 +43,7 @@ public class GraphAdapter extends PagerAdapter
    {
       int index = views.indexOf (object);
       if (index == -1)
+          //Macro from GraphAdapter
          return POSITION_NONE;
       else
          return index;
