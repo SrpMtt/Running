@@ -29,8 +29,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.location.GpsStatus;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.SystemClock;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -51,8 +56,12 @@ public class MainActivity extends ActionBarActivity
    private ListView mDrawerList;
    private String[] itemList; //Navigation drawer items
    private ActionBarDrawerToggle mDrawerToggle;
+   private boolean isGPSFix = false;
+   private long lastUpdateMillis;   //used to verify GPS availability
+   private Location lastLocation;   //used to verify GPS availability
 
-   protected void onCreate(Bundle savedInstanceState) {
+   protected void onCreate(Bundle savedInstanceState)
+   {
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
 
@@ -152,6 +161,59 @@ public class MainActivity extends ActionBarActivity
       };
 
       mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+      //verify GPS availability
+      final LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+      GpsStatus.Listener gpsListener = new GpsStatus.Listener()
+      {
+         @Override
+         public void onGpsStatusChanged(int event)
+         {
+            switch (event)
+            {
+               case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+                  if (lastLocation != null)
+                  {
+                     isGPSFix = (SystemClock.elapsedRealtime() - lastUpdateMillis < 3000);
+                  }
+
+                  if (isGPSFix) {
+                     // A fix has been acquired.
+                  }
+                  else
+                  {
+                     // The fix has been lost.
+                  }
+                  break;
+
+               case GpsStatus.GPS_EVENT_FIRST_FIX:
+                  // Do something.
+                  isGPSFix = true;
+                  break;
+            }
+         }
+      };
+
+      final LocationListener locationListener = new LocationListener()
+      {
+         public void onLocationChanged(Location newLocation)
+         {
+            lastUpdateMillis = SystemClock.elapsedRealtime();
+            lastLocation = newLocation;
+         }
+
+         public void onStatusChanged(String provider, int status, Bundle extras) {
+         }
+
+         public void onProviderEnabled(String provider) {
+         }
+
+         public void onProviderDisabled(String provider) {
+         }
+      };
+
+      locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
+      locationManager.addGpsStatusListener(gpsListener);
    }
 
    // Called when invalidateOptionsMenu() is invoked
@@ -190,6 +252,16 @@ public class MainActivity extends ActionBarActivity
 
          }
       }
+   }
+
+   public void setGPSFix (boolean status )
+   {
+      this.isGPSFix = status;
+   }
+
+   public boolean getGPSFix ()
+   {
+      return this.isGPSFix;
    }
 
    //Update session list on restart

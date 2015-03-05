@@ -40,9 +40,9 @@ import android.widget.Toast;
 
 public class EmptyListFragment extends Fragment {
 
-   private boolean isGPSFix = false;
-   private long lastUpdateMillis;
-   private Location lastLocation;
+   //   private boolean isGPSFix = false;
+//   private long lastUpdateMillis;
+//   private Location lastLocation;
    private View view;
 
    @Override
@@ -62,7 +62,7 @@ public class EmptyListFragment extends Fragment {
          @Override
          public void onClick(View v) {
             //If GPS is available starts a new session, otherwise a Toast is shown
-            if (isGPSFix)
+            if (((MainActivity)getActivity()).getGPSFix())
             {
                DialogFragment newFragment = new NewSessionDialog();
                newFragment.show(getFragmentManager(), "New Training");
@@ -74,60 +74,60 @@ public class EmptyListFragment extends Fragment {
          }
       });
 
-      //Verify GPS availability
-      final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
-      GpsStatus.Listener gpsListener = new GpsStatus.Listener()
-      {
-         @Override
-         public void onGpsStatusChanged(int event)
-         {
-            switch (event)
-            {
-               case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
-                  if (lastLocation != null)
-                  {
-                     isGPSFix = (SystemClock.elapsedRealtime() - lastUpdateMillis < 3000);
-                  }
-
-                  if (isGPSFix) {
-                     // A fix has been acquired.
-                  }
-                  else
-                  {
-                     // The fix has been lost.
-                  }
-                  break;
-
-               case GpsStatus.GPS_EVENT_FIRST_FIX:
-                  // Do something.
-                  isGPSFix = true;
-                  break;
-            }
-         }
-      };
-
-      final LocationListener locationListener = new LocationListener()
-      {
-         public void onLocationChanged(Location newLocation)
-         {
-            lastUpdateMillis = SystemClock.elapsedRealtime();
-            lastLocation = newLocation;
-         }
-
-         public void onStatusChanged(String provider, int status, Bundle extras) {
-         }
-
-         public void onProviderEnabled(String provider) {
-         }
-
-         public void onProviderDisabled(String provider) {
-         }
-
-
-      };
-
-      locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
-      locationManager.addGpsStatusListener(gpsListener);
+//      //Verify GPS availability
+//      final LocationManager locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+//      GpsStatus.Listener gpsListener = new GpsStatus.Listener()
+//      {
+//         @Override
+//         public void onGpsStatusChanged(int event)
+//         {
+//            switch (event)
+//            {
+//               case GpsStatus.GPS_EVENT_SATELLITE_STATUS:
+//                  if (lastLocation != null)
+//                  {
+//                     isGPSFix = (SystemClock.elapsedRealtime() - lastUpdateMillis < 3000);
+//                  }
+//
+//                  if (isGPSFix) {
+//                     // A fix has been acquired.
+//                  }
+//                  else
+//                  {
+//                     // The fix has been lost.
+//                  }
+//                  break;
+//
+//               case GpsStatus.GPS_EVENT_FIRST_FIX:
+//                  // Do something.
+//                  isGPSFix = true;
+//                  break;
+//            }
+//         }
+//      };
+//
+//      final LocationListener locationListener = new LocationListener()
+//      {
+//         public void onLocationChanged(Location newLocation)
+//         {
+//            lastUpdateMillis = SystemClock.elapsedRealtime();
+//            lastLocation = newLocation;
+//         }
+//
+//         public void onStatusChanged(String provider, int status, Bundle extras) {
+//         }
+//
+//         public void onProviderEnabled(String provider) {
+//         }
+//
+//         public void onProviderDisabled(String provider) {
+//         }
+//
+//
+//      };
+//
+//      locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, 0, 0, locationListener);
+//      locationManager.addGpsStatusListener(gpsListener);
 
       return view;
    }
