@@ -219,7 +219,7 @@ public class SessionListFragment extends Fragment
    {
       ArrayList<SessionListItem> sessionList = new ArrayList<SessionListItem>();
 
-      String selectQuery = "SELECT  * FROM session";
+      String selectQuery = "SELECT  * FROM session ORDER BY _id DESC";
       RunDbHelper helper = new RunDbHelper(getActivity());
       SQLiteDatabase db = helper.getWritableDatabase();
       Cursor cursor = db.rawQuery(selectQuery, null);
