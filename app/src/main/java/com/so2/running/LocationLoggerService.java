@@ -55,6 +55,7 @@ public class LocationLoggerService extends Service implements LocationListener {
    private float distanceFromLastLocation;
    private long updateDifferences;
    private float instantSpeed;
+   private float lastSpeed = 3;
    private long lastUpdateMillis = SystemClock.elapsedRealtime();
    private SessionData sessionData = new SessionData();
    private float lastMetersSpeed = 0;
@@ -184,6 +185,12 @@ public class LocationLoggerService extends Service implements LocationListener {
 
          if ((instantSpeed < 0.8) && (started && !paused)) {
             instantSpeed = 0;
+            lastSpeed = instantSpeed;
+         }
+
+         if ((instantSpeed > lastSpeed*2) && (started && !paused) && instantSpeed > 6) {
+            instantSpeed = lastSpeed*2;
+            lastSpeed = instantSpeed;
          }
 
          sessionData.setInstantSpeed(instantSpeed);
@@ -194,6 +201,7 @@ public class LocationLoggerService extends Service implements LocationListener {
 
          if (sessionData.getSessionDistance() > (userSetLastMeters * reachedTimes)) {
             this.sendMessage("updateLastMeterValue");
+            reachedTimes++;
          }
 
          if (sessionData.getSessionDistance() > DATA_UPDATE_INTERVAL * dataUpdateTimes) {

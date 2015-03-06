@@ -103,7 +103,7 @@
        android:text="@string/gpsFix"
        android:layout_centerHorizontal="true"
        android:layout_above="@+id/buttonsContainer"
-       android:layout_margin="5dp"
+       android:layout_margin="10dp"
        />
 
 
