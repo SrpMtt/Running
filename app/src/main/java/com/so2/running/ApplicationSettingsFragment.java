@@ -84,5 +84,13 @@ public class ApplicationSettingsFragment extends PreferenceFragment {
             return false;
          }
       });
+
+      /*Preference vibCheckbox = (Preference) getPreferenceScreen().findPreference("pref_vibration");
+      vibCheckbox.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+         public boolean onPreferenceChange() {
+
+            return true;
+         }
+      });*/
    }
 }
