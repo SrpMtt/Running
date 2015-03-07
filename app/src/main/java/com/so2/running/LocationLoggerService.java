@@ -36,6 +36,7 @@ import android.os.Binder;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.widget.SeekBar;
@@ -66,15 +67,21 @@ public class LocationLoggerService extends Service implements LocationListener {
    private int deltaSpeed;
    private int userSetSpeed;
    private SeekBar seekBar = null;
+   private long[] lowSpeedPattern = {0, 100, 100, 100, 100, 100, 100};
+   private long[] highSpeedPattern = {0, 2000};
+   private boolean v;
 
 
    @Override
    public void onCreate() {
       subscribeToLocationUpdates();
+      Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
       SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
       String prefSpeed = sharedPref.getString("pref_default_last_meters", "50");
+      boolean vib = sharedPref.getBoolean("pref_vibration", true);
 
       userSetLastMeters = Float.valueOf(prefSpeed);
+      v = vib;
    }
 
    @Override
@@ -219,6 +226,16 @@ public class LocationLoggerService extends Service implements LocationListener {
 
          if (clientListener != null) {
             clientListener.onNewGPSPoint();
+         }
+
+         if (v) {
+            if (instantSpeed < userSetSpeed) {
+               //vibrator.vibrate(lowSpeedPattern, 0);
+               System.out.println("lento");
+            } else {
+               //vibrator.vibrate(highSpeedPattern, 0);
+               System.out.println("veloce");
+            }
          }
       }
    }

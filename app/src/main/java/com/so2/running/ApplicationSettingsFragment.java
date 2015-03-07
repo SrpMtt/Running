@@ -96,7 +96,7 @@ public class ApplicationSettingsFragment extends PreferenceFragment {
             Toast.makeText(getActivity(), R.string.vibration_not_active, Toast.LENGTH_SHORT).show();
         }
         return true;
-    }
+      }
       });
    }
 }
