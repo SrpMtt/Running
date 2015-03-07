@@ -121,7 +121,7 @@ public class LocationLoggerService extends Service implements LocationListener {
       return mChrono;
    }
 
-   public float getInstantSpeed(){
+   public float getInstantSpeed() {
       return instantSpeed;
    }
 
@@ -268,4 +268,5 @@ public class LocationLoggerService extends Service implements LocationListener {
    public interface OnNewGPSPointsListener {
       public void onNewGPSPoint();
    }
+
 }

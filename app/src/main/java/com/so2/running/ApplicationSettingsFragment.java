@@ -89,11 +89,11 @@ public class ApplicationSettingsFragment extends PreferenceFragment {
       vibCheckbox.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
          public boolean onPreferenceChange(Preference preference, Object newValue) {
             if (newValue.toString().equals("true")) {
-               Toast.makeText(getActivity(), "Vibration active", Toast.LENGTH_SHORT).show();
+               Toast.makeText(getActivity(), R.string.vibration_active, Toast.LENGTH_SHORT).show();
             }
             else
             {
-            Toast.makeText(getActivity(), "Vibration not active", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), R.string.vibration_not_active, Toast.LENGTH_SHORT).show();
         }
         return true;
     }

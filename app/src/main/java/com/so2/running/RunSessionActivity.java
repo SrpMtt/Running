@@ -31,12 +31,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +42,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.SeekBar;
 import android.widget.TextView;
+
 import org.json.JSONException;
 import java.io.IOException;
 
@@ -140,6 +139,7 @@ public class RunSessionActivity extends Activity {
             stopBehavior();
          }
       });
+
    }
 
 
@@ -147,8 +147,7 @@ public class RunSessionActivity extends Activity {
    private ServiceConnection mConnection = new ServiceConnection() {
 
       @Override
-      public void onServiceConnected(ComponentName className, IBinder
-              service) {
+      public void onServiceConnected(ComponentName className, IBinder service) {
          // This is called when the connection with the service has been
          // established, giving us the service object we can use to
          // interact with the service.
