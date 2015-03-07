@@ -54,6 +54,8 @@
    <string name="emptyListMessage">No sessions yet</string>
    <string name="gpsFix">GPS available</string>
    <string name="gpsNoFix">GPS not available</string>
+   <string name="pref_vib_title">Vibration</string>
+   <string name="pref_vib_summary">Vibrate when slower or faster than default speed</string>
 
    <string name="graphTimeSpeed">Time(sec) / Speed(m/s)</string>
    <string name="graphDistanceSpeed">Distance(m) / Speed(m/s)</string>

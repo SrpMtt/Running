@@ -27,6 +27,13 @@
             android:inputType="number"
             />
 
+       <CheckBoxPreference
+          android:key="pref_vibration"
+          android:title="@string/pref_vib_title"
+          android:summary="@string/pref_vib_summary"
+          android:defaultValue="false"
+          />
+
     </PreferenceCategory>
 
     <PreferenceCategory
