@@ -356,4 +356,5 @@ public class RunSessionActivity extends Activity {
 
       endSessionDialog.show();
    }
+
 }

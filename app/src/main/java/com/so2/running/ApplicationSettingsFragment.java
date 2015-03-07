@@ -85,12 +85,18 @@ public class ApplicationSettingsFragment extends PreferenceFragment {
          }
       });
 
-      /*Preference vibCheckbox = (Preference) getPreferenceScreen().findPreference("pref_vibration");
+      Preference vibCheckbox = (Preference) getPreferenceScreen().findPreference("pref_vibration");
       vibCheckbox.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-         public boolean onPreferenceChange() {
-
-            return true;
-         }
-      });*/
+         public boolean onPreferenceChange(Preference preference, Object newValue) {
+            if (newValue.toString().equals("true")) {
+               Toast.makeText(getActivity(), "checked", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+            Toast.makeText(getActivity(), "unchecked", Toast.LENGTH_SHORT).show();
+        }
+        return true;
+    }
+      });
    }
 }
