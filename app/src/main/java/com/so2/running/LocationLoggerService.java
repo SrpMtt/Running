@@ -75,7 +75,6 @@ public class LocationLoggerService extends Service implements LocationListener {
    @Override
    public void onCreate() {
       subscribeToLocationUpdates();
-      Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
       SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
       String prefSpeed = sharedPref.getString("pref_default_last_meters", "50");
       boolean vib = sharedPref.getBoolean("pref_vibration", true);
@@ -228,12 +227,14 @@ public class LocationLoggerService extends Service implements LocationListener {
             clientListener.onNewGPSPoint();
          }
 
-         if (v) {
+         if (v)
+         {
+            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
             if (instantSpeed < userSetSpeed) {
-               //vibrator.vibrate(lowSpeedPattern, 0);
+               vibrator.vibrate(lowSpeedPattern, 0);
                System.out.println("lento");
             } else {
-               //vibrator.vibrate(highSpeedPattern, 0);
+               vibrator.vibrate(highSpeedPattern, 0);
                System.out.println("veloce");
             }
          }
