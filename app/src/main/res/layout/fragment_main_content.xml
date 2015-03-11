@@ -16,7 +16,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="80dp"
               android:scaleType="fitXY"
-              android:src="@drawable/ic_launcher"/>
+              android:src="@drawable/icon_hi_res"/>
 
 
    <Button

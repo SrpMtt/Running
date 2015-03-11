@@ -13,7 +13,7 @@
               android:layout_centerHorizontal="true"
               android:layout_marginTop="60dp"
               android:scaleType="fitXY"
-              android:src="@drawable/ic_launcher"/>
+              android:src="@drawable/icon_hi_res"/>
 
    <RelativeLayout android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
