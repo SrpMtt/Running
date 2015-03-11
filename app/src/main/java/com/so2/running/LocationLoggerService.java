@@ -44,6 +44,7 @@ import android.widget.SeekBar;
 public class LocationLoggerService extends Service implements LocationListener {
 
    private final int DATA_UPDATE_INTERVAL = 50; //update interval for graph data collection
+   private final static long VIBRATION_INTERVAL = 4000;
 
    private final IBinder mBinder = new LocalBinder();
    private OnNewGPSPointsListener clientListener;
@@ -65,6 +66,8 @@ public class LocationLoggerService extends Service implements LocationListener {
    private int reachedTimes = 1; //counter for userSetLastMeter reached
    private int dataUpdateTimes = 0; //counter for dataUpdateInterval reached times
    private int deltaSpeed;
+   private int seekBarPosition;
+   private long lastVibrationTime = 0;
    private int userSetSpeed;
    private SeekBar seekBar = null;
    private long[] lowSpeedPattern = {0, 100, 100, 100, 100, 100, 100};
@@ -179,7 +182,8 @@ public class LocationLoggerService extends Service implements LocationListener {
          if ((lastLocation == null) || (!started || paused)) {
             lastLocation = newLocation;
             lastUpdate = mChrono.getTimeOnSession();
-         } else {
+         } else
+         {
             distanceFromLastLocation = lastLocation.distanceTo(newLocation);
             updateDifferences = mChrono.getTimeOnSession() - lastUpdate;
             instantSpeed = (distanceFromLastLocation * 1000) / (float) updateDifferences;
@@ -218,25 +222,39 @@ public class LocationLoggerService extends Service implements LocationListener {
             dataUpdateTimes++;
          }
 
-         this.sendMessage("updateUI");
+         if ((started && !paused))
+         {
+            this.sendMessage("updateUI");
 
-         deltaSpeed = (int) ((0 - ((userSetSpeed - instantSpeed) / userSetSpeed)) * RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE);
-         seekBar.setProgress(deltaSpeed + (RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE / 2));
+            deltaSpeed = (int) ((0 - ((userSetSpeed - instantSpeed) / userSetSpeed)) * RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE);
+            seekBarPosition = deltaSpeed + (RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE / 2);
+            seekBar.setProgress(deltaSpeed + (RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE / 2));
+         }
 
          if (clientListener != null) {
             clientListener.onNewGPSPoint();
          }
 
-         if (v)
+
+         if (v  && (started && !paused))
          {
-            Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-            if (instantSpeed < userSetSpeed) {
-               vibrator.vibrate(lowSpeedPattern, 0);
-               System.out.println("lento");
-            } else {
-               vibrator.vibrate(highSpeedPattern, 0);
-               System.out.println("veloce");
+            if ( (SystemClock.elapsedRealtime() - lastVibrationTime > LocationLoggerService.VIBRATION_INTERVAL ) ||  lastVibrationTime == 0)
+            {
+               lastVibrationTime = SystemClock.elapsedRealtime();
+
+               Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+               if ( seekBarPosition < (RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE / 4))
+               {
+                  vibrator.vibrate(lowSpeedPattern, 0);
+                  System.out.println("lento");
+               }
+               else if ( seekBarPosition > ( RunSessionActivity.DEFAULT_SEEKBAR_MAX_VALUE * 3/4 ))
+               {
+                  vibrator.vibrate(highSpeedPattern, 0);
+                  System.out.println("veloce");
+               }
             }
+
          }
       }
    }
