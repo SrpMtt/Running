@@ -28,6 +28,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -297,12 +298,28 @@ public class LocationLoggerService extends Service implements LocationListener {
       if(!locationManager.isProviderEnabled("gps"))
       {
       }
-      this.locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+      this.locationManager.requestLocationUpdates(getProvider(), 0, 0, this);
    }
 
    //interface for listeners
    public interface OnNewGPSPointsListener {
       public void onNewGPSPoint();
    }
+
+   String getProvider() {
+     LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+
+     Criteria criteria = new Criteria();
+     //criteria.setPowerRequirement(Criteria.POWER_LOW); // Chose your desired power consumption level.
+     criteria.setAccuracy(Criteria.ACCURACY_COARSE); // Choose your accuracy requirement.
+     //criteria.setSpeedRequired(true); // Chose if speed for first location fix is required.
+     criteria.setAltitudeRequired(true); // Choose if you use altitude.
+     //criteria.setBearingRequired(false); // Choose if you use bearing.
+      //criteria.setCostAllowed(false); // Choose if this provider can waste money
+
+     // Provide your criteria and flag enabledOnly that tells
+     // LocationManager only to return active providers.
+     return locationManager.getBestProvider(criteria, true);
+  }
 
 }
